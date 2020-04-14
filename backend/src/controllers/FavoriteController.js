@@ -57,7 +57,7 @@ module.exports = {
     async update (req,res){
         const { id } = req.params;
 
-        const { title, description } = req.body;
+        const { title, description, url } = req.body;
 
         await connection('favorites').where('id', id)
         .update({

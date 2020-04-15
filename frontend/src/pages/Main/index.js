@@ -2,7 +2,9 @@ import React from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { Text, View, TouchableOpacity } from 'react-native';
 
-export default function Login() {
+import styles from './styles';
+
+export default function Main() {
     const navigation = useNavigation();
 
     function navigateToLogin(){
@@ -11,8 +13,8 @@ export default function Login() {
 
     return (
         <View style={styles.container}>
-            <TouchableOpacity onPress={navigateToLogin}>
-                <Text>Logout</Text>
+            <TouchableOpacity style={styles.button} onPress={navigateToLogin}>
+                <Text style={styles.buttonText}>Logout</Text>
             </TouchableOpacity>
         </View>
     );

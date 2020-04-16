@@ -17,13 +17,21 @@ export default function Login() {
         navigation.navigate('Main');
     }
 
+    function navigateToCreateUser(){
+        navigation.navigate('User');
+    }
+
     async function handleSubmit(data){
-        try{
-            const response = await api.post('login', data);
-            alert(`Bem-vindo! ${response.data.login}`);
-            navigateToMain();
-        }catch(err){
-            alert("Usuário não cadastrado.");
+        if(data.login === "" && data.senha === ""){
+            alert('Informe os campos obrigatórios.');
+        }else{
+            try{
+                const response = await api.post('login', data);
+                alert(`Bem-vindo! ${response.data.login}`);
+                navigateToMain();
+            }catch(err){
+                alert("Usuário não cadastrado.");
+            }
         }
     }
 
@@ -46,7 +54,7 @@ export default function Login() {
                             <Text style={styles.buttonText} >Login</Text>
                         </TouchableOpacity>      
                         
-                        <TouchableOpacity style={styles.buttonRegister} onPress={() => alert('Página de cadastrar-se')}>
+                        <TouchableOpacity style={styles.buttonRegister} onPress={navigateToCreateUser}>
                             <Text style={styles.buttonRegisterText}>Cadastrar-se</Text>
                         </TouchableOpacity>
                     </View>

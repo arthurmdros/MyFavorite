@@ -16,20 +16,27 @@ export default function User() {
         navigation.navigate('Login');
     }
 
-    async function handleSubmit(data){
+    async function handleSubmit(data, { reset }){
         if(data.login === "" && data.senha === "" && data.confirmar === ""){
             alert("Informe os campos obrigatórios.");
         }else{
-            if(data.confirmar === data.senha){
-                try{
-                    await api.post('users', data);
-                    alert('Cadastro realizado com sucesso.');
-                    navigateToLogin();
-                }catch(err){
-                    alert("Usuário informado já existe.");
+            if(data.senha.length >= 8 ){
+                if(data.confirmar === data.senha){
+                    try{
+                        await api.post('users', data);
+                        alert('Cadastro realizado com sucesso.');
+                        navigateToLogin();
+                    }catch(err){
+                        alert("Usuário informado já existe.");
+                        reset();
+                    }
+                }else{
+                    alert('Senhas diferentes. Informe a senha correta!');
+                    reset();
                 }
             }else{
-                alert('Senhas diferentes. Informe a senha correta!')
+                alert('Campo senha deve ter no mínimo 8 caracteres.');
+                reset();
             }
         }
     }
@@ -46,10 +53,10 @@ export default function User() {
                     <Input style={styles.login} name="login" type="login" />
 
                     <Text style={styles.text}>Senha: </Text>
-                    <Input style={styles.senha} name="senha" type="senha" />
+                    <Input secureTextEntry={true} style={styles.senha} name="senha" type="senha" />
                     
                     <Text style={styles.text}>Confirmar senha: </Text>
-                    <Input style={styles.senha} name="confirmar" type="confirmar" />
+                    <Input secureTextEntry={true} style={styles.senha} name="confirmar" type="confirmar" />
 
                     <View style={styles.action}>
                         <TouchableOpacity style={styles.button} onPress={() => formRef.current.submitForm()}>

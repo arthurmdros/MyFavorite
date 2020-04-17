@@ -17,20 +17,32 @@ export default function Login() {
         navigation.navigate('Main');
     }
 
-    function navigateToCreateUser(){
+    function resetForm() {
+        formRef.current.reset();
+    }
+
+    function navigateToCreateUser(){   
+        resetForm();
         navigation.navigate('User');
     }
 
-    async function handleSubmit(data){
+    async function handleSubmit(data, { reset }){
         if(data.login === "" && data.senha === ""){
             alert('Informe os campos obrigatórios.');
-        }else{
-            try{
-                const response = await api.post('login', data);
-                alert(`Bem-vindo! ${response.data.login}`);
-                navigateToMain();
-            }catch(err){
-                alert("Usuário não cadastrado.");
+        }else{            
+           if(data.senha.length >= 8){
+                try{
+                    const response = await api.post('login', data);                    
+                    alert(`Bem-vindo! ${response.data.login}`);
+                    reset();
+                    navigateToMain();
+                }catch(err){
+                    alert("Usuário não cadastrado.");
+                    reset();
+                }
+            }else{
+                alert("Campo senha tem que possuir no mínimo 8 caracteres.");
+                reset();
             }
         }
     }
@@ -47,7 +59,7 @@ export default function Login() {
                     <Input style={styles.login} name="login" type="login" />
 
                     <Text style={styles.text}>Senha: </Text>
-                    <Input style={styles.senha} name="senha" type="senha" />
+                    <Input secureTextEntry={true} style={styles.senha} name="senha" type="senha" />
 
                     <View style={styles.action}>
                         <TouchableOpacity style={styles.button} onPress={() => formRef.current.submitForm()}>

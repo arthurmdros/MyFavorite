@@ -3,8 +3,10 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
 import Login from './pages/Login';
-import Main from './pages/Main';
 import User from './pages/User';
+import Main from './pages/Main';
+import Create from './pages/Create';
+import Detail from './pages/Detail';
 
 const AppStack = createStackNavigator();
 
@@ -15,6 +17,8 @@ export default function Rotues(){
                 <AppStack.Screen name='Login' component={Login}/>
                 <AppStack.Screen name='Main' component={Main}/>
                 <AppStack.Screen name='User' component={User}/>
+                <AppStack.Screen name='Create' component={Create}/>
+                <AppStack.Screen name='Detail' component={Detail}/>
             </AppStack.Navigator>
         </NavigationContainer>
     );

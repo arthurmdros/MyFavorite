@@ -29,6 +29,14 @@ export default function Main() {
         navigation.navigate('Login');
     }
 
+    function navigateToCreate(){
+        navigation.navigate('Create');
+    }
+
+    function navigateToDetail(){
+        navigation.navigate('Detail');
+    }
+
     return (
         <View style={styles.container}>
             <View style={styles.header}>
@@ -48,7 +56,7 @@ export default function Main() {
                 </Text>
 
                 <View style={styles.actionsHeader}>
-                    <TouchableOpacity style={styles.createButton} onPress={() => alert('Cadastrar novo.')}>
+                    <TouchableOpacity style={styles.createButton} onPress={navigateToCreate}>
                         <Text style={styles.createButtonText}> Adicionar novo </Text>
                         <Feather name='plus-circle' size={20} color={'#FFF'}/>
                     </TouchableOpacity>
@@ -67,7 +75,7 @@ export default function Main() {
 
                         <TouchableOpacity
                             style={styles.detailsButton}
-                            onPress={()=> alert('Detalhes do item.')}
+                            onPress={navigateToDetail}
                         >
                             <Text style={styles.detailsButtonText}> Ver mais detalhes </Text>
                             <Feather name='arrow-right' size={16} color={'#FFF'}/>

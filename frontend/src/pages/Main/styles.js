@@ -28,8 +28,7 @@ export default StyleSheet.create({
     },
 
     headerTitle:{
-      paddingHorizontal: 12,
-      marginTop: 10,
+      paddingHorizontal: 12,      
     },
 
     title:{
@@ -46,25 +45,57 @@ export default StyleSheet.create({
       color: '#FFF',
     },
 
+    actionsHeader:{
+      marginTop: 30,
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+    },
+
+    createButton: {
+      flexDirection: 'row',
+      alignItems: 'center',      
+    },  
+
+    createButtonText: {
+      color: '#FFF',
+      fontSize: 15,
+      fontWeight: 'bold',
+    },
+
     favoritesList:{
       marginTop: 30,
-      flexDirection: 'column',
-      alignItems: 'center',
-      justifyContent: 'center',
+      paddingHorizontal: 20,
     },
 
-    button:{
-        marginTop: 10,
-        backgroundColor: '#FFF',
-        borderRadius: 8,
-        height: 40,
-        width: '38%',
+    favorite:{
+      padding: 24,
+      borderRadius: 8,
+      backgroundColor: '#41414d',
+      marginBottom: 16,
+    },
+
+    favoriteProperty:{
+      fontSize: 14,
+      color: '#FFF',
+      fontWeight: 'bold',
+    },
+
+    favoriteValue:{
+      marginTop: 8,
+      fontSize: 15,
+      marginBottom: 24,
+      color: '#FFF',
+    },
+
+    detailsButton:{
+        flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'space-between',
     },
 
-    buttonText:{
-        color: '#000000',
+    detailsButtonText:{
+        color: '#FFF',
         fontSize: 15,
         fontWeight: 'bold',
     }

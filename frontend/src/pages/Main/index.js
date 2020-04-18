@@ -1,28 +1,31 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { SimpleLineIcons, Feather } from '@expo/vector-icons';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import { FlatList, Image, Text, View, TouchableOpacity } from 'react-native';
 
+import api from '../../services/api';
 import logoImg from '../../assets/logo_2X.png';
 import styles from './styles';
 
 export default function Main() {
-    const DATA = [
-        {
-          id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-          title: 'First Item',
-        },
-        {
-          id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-          title: 'Second Item',
-        },
-        {
-          id: '58694a0f-3da1-471f-bd96-145571e29d72',
-          title: 'Third Item',
-        },
-      ];
+    
+    const [favorites, setFavorites] = useState([]);    
 
     const navigation = useNavigation();
+    const route = useRoute();
+
+    const userId = route.params.user.data.id;
+    const userName = route.params.user.data.login;
+    
+    useEffect(() => {
+        api.get('profile', {
+            headers: {
+                Authorization: userId,
+            }
+        }).then(response => {            
+            setFavorites(response.data);            
+        })
+    }, [userId]);       
 
     function navigateToLogin(){
         alert('Saindo...');
@@ -49,7 +52,7 @@ export default function Main() {
 
             <View style={styles.headerTitle}>
 
-                <Text style={styles.title}> Bem-Vindo, fulano!</Text>
+                <Text style={styles.title}> Bem-Vindo, {userName}!</Text>
                 <Text style={styles.description}> 
                     Crie sua lista de séries, filmes, documentários favoritos. 
                     Adicione comentários sobre ela ou adicione para lembrar-se de assistir depois.
@@ -64,14 +67,17 @@ export default function Main() {
             </View>
 
             <FlatList 
-                data = {DATA}
+                data = {favorites}
                 style={styles.favoritesList}
-                keyExtractor={item => item.id}
+                keyExtractor={favorite => String(favorite.id)}
                 showsVerticalScrollIndicator={false}
-                renderItem={({item})=>(
+                renderItem={({item : favorite})=>(
                     <View style={styles.favorite}>
                         <Text style={styles.favoriteProperty}>Título:</Text>
-                        <Text style={styles.favoriteValue}>{item.title}</Text>
+                        <Text style={styles.favoriteValue}>{favorite.title}</Text>
+                        
+                        <Text style={styles.favoriteProperty}>Título:</Text>
+                        <Text style={styles.favoriteValue}>{favorite.description}</Text>
 
                         <TouchableOpacity
                             style={styles.detailsButton}

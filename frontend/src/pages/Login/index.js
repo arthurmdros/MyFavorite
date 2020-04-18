@@ -13,8 +13,8 @@ export default function Login() {
     const formRef = useRef(null);
     const navigation = useNavigation();
 
-    function navigateToMain(){
-        navigation.navigate('Main');
+    function navigateToMain(user){
+        navigation.navigate('Main', { user });
     }
 
     function resetForm() {
@@ -32,10 +32,10 @@ export default function Login() {
         }else{            
            if(data.senha.length >= 8){
                 try{
-                    const response = await api.post('login', data);                    
-                    alert(`Bem-vindo! ${response.data.login}`);
+                    const user = await api.post('login', data);                                        
+                    alert(`Bem-vindo! ${user.data.login}`);
                     reset();
-                    navigateToMain();
+                    navigateToMain(user);
                 }catch(err){
                     alert("Usuário não cadastrado.");
                     reset();

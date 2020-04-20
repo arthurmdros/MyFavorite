@@ -36,8 +36,8 @@ export default function Main() {
         navigation.navigate('Create');
     }
 
-    function navigateToDetail(){
-        navigation.navigate('Detail');
+    function navigateToDetail(favorite){
+        navigation.navigate('Detail', favorite);
     }
 
     return (
@@ -75,13 +75,10 @@ export default function Main() {
                     <View style={styles.favorite}>
                         <Text style={styles.favoriteProperty}>Título:</Text>
                         <Text style={styles.favoriteValue}>{favorite.title}</Text>
-                        
-                        <Text style={styles.favoriteProperty}>Título:</Text>
-                        <Text style={styles.favoriteValue}>{favorite.description}</Text>
-
+                                                
                         <TouchableOpacity
                             style={styles.detailsButton}
-                            onPress={navigateToDetail}
+                            onPress={() => navigateToDetail(favorite)}
                         >
                             <Text style={styles.detailsButtonText}> Ver mais detalhes </Text>
                             <Feather name='arrow-right' size={16} color={'#FFF'}/>

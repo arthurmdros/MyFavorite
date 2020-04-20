@@ -7,6 +7,7 @@ import User from './pages/User';
 import Main from './pages/Main';
 import Create from './pages/Create';
 import Detail from './pages/Detail';
+import Update from './pages/Update';
 
 const AppStack = createStackNavigator();
 
@@ -19,6 +20,7 @@ export default function Rotues(){
                 <AppStack.Screen name='User' component={User}/>
                 <AppStack.Screen name='Create' component={Create}/>
                 <AppStack.Screen name='Detail' component={Detail}/>
+                <AppStack.Screen name='Update' component={Update}/>
             </AppStack.Navigator>
         </NavigationContainer>
     );

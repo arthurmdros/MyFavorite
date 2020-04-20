@@ -43,7 +43,7 @@ export default function User() {
 
     return (        
         <View style={styles.container}>
-            <View style={styles.header}>
+            <View style={styles.header}>                
                 <Text style={styles.text}>Cadastrar usuário</Text>
             </View>
 

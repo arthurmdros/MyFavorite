@@ -19,6 +19,16 @@ container: {
     marginTop: 30,
   },
 
+  imageContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',    
+  },
+
+  image:{
+    width: 200,
+    height: 140,    
+    resizeMode: "contain",
+  },
   
   containerFavorite:{    
     paddingHorizontal: 20,
@@ -28,18 +38,17 @@ container: {
     padding: 24,
     borderRadius: 8,
     backgroundColor: '#41414d',
-    marginTop: 48,        
+    marginTop: 20,        
   },
 
   favoriteProperty:{
-    fontSize: 18,
+    fontSize: 15,
     color: '#FFF',
     fontWeight: 'bold',
     marginTop: 24,
   },
 
-  favoriteValue: {
-    marginTop: 8,
+  favoriteValue: {    
     fontSize: 15,
     color: '#FFF',
   },

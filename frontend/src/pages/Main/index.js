@@ -37,7 +37,7 @@ export default function Main() {
     }
 
     function navigateToDetail(favorite){
-        navigation.navigate('Detail', favorite);
+        navigation.navigate('Detail', {favorite});
     }
 
     return (

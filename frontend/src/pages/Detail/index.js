@@ -4,13 +4,14 @@ import { Feather, AntDesign } from '@expo/vector-icons';
 import { useNavigation, useRoute } from '@react-navigation/native';
 
 import logoImg from '../../assets/logo_2X.png';
+import defaultImg from '../../assets/default.png';
 import styles from './styles';
 
 export default function Detail(){
     const route = useRoute();
     const navigation = useNavigation();
-
-    const favorite = route.params;
+    
+    const favorite = route.params.favorite;
 
     function navigateToEdit(){
         navigation.navigate('Update');
@@ -20,6 +21,10 @@ export default function Detail(){
         navigation.navigate('Main');
     }
 
+    function navigateToWebView(favorite){
+        navigation.navigate('WebPage', {favorite});
+    }
+
     return(
         <View style={styles.container}>
 
@@ -27,6 +32,12 @@ export default function Detail(){
                 <Image source={logoImg}/>
                 <TouchableOpacity style={styles.return} onPress={navigateToMain}>
                     <Feather name='arrow-left' size={20} color={'#FFF'}/>                    
+                </TouchableOpacity>
+            </View>
+
+            <View style={styles.imageContainer}>
+                <TouchableOpacity onPress={() => alert('Logo')}>
+                    <Image source={defaultImg} style={styles.image}/>
                 </TouchableOpacity>
             </View>
             
@@ -41,7 +52,7 @@ export default function Detail(){
                 
                 
                 <Text style={styles.favoriteProperty}>Link:</Text>
-                <TouchableOpacity onPress={()=>alert('WebView')}>
+                <TouchableOpacity onPress={() => navigateToWebView(favorite)}>
                     <Text style={styles.favoriteValue}>{favorite.url}</Text>                
                 </TouchableOpacity>
                 
@@ -62,10 +73,9 @@ export default function Detail(){
 }
 
 /*
-                    
-                    URL com webView ----- JShunt
-                    Icone para imagem ----- ImageShare
                     Método Apagar ------ ToDo
                     Criar implementação do criar favorito na Página Create ------- ToDo
-                    Criar implementação do atualizar favorito na Página Update -------- ToDO
+                    Criar implementação do atualizar favorito na Página Update -------- ToDO                      
+                    Icone para imagem ----- ImageShare
+  
 */

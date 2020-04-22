@@ -15,7 +15,7 @@ container: {
 
   return: {
     flexDirection: 'row',
-    paddingHorizontal: 24,
+    paddingHorizontal: 40,
     marginTop: 30,
   },
   
@@ -24,11 +24,8 @@ container: {
     marginBottom: 16,
     marginTop: 20,
     lineHeight: 24,
+    marginLeft: 20,
     color: '#FFF'
-  },
-
-  headerTitle:{    
-    marginLeft: 20
   },
 
   text:{

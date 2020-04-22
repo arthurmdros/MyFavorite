@@ -22,11 +22,11 @@ export default function Update(){
                 </TouchableOpacity>
             </View>
 
-            <View style={styles.headerTitle}>                
-                <Text style={styles.description}>
-                    Insira as informações abaixo:
-                </Text>
-            </View>
+            
+            <Text style={styles.description}>
+                Insira as informações abaixo:
+            </Text>
+        
 
             <View style={styles.newFavorite}>
                 <Text style={styles.text}> Formulario </Text>

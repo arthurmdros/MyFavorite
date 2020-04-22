@@ -7,5 +7,5 @@ export default function WebPage(){
     
     const favorite = route.params.favorite;
 
-    return <WebView source={{ uri: favorite.url }} style= {{ marginTop:20 }} />;
+    return <WebView source={{ uri: favorite.url }} style= {{ marginTop: 40 }} />;
 }

@@ -13,6 +13,7 @@ export default function Main() {
 
     const navigation = useNavigation();
     const route = useRoute();
+    
 
     const userId = route.params.user.data.id;
     const userName = route.params.user.data.login;
@@ -41,7 +42,7 @@ export default function Main() {
     }
 
     return (
-        <View style={styles.container}>
+        <View style={styles.container} >
             <View style={styles.header}>
                 <Image source={logoImg}/>
                 <TouchableOpacity style={styles.logout} onPress={navigateToLogin}>

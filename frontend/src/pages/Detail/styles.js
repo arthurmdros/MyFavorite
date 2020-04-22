@@ -5,21 +5,22 @@ export default StyleSheet.create({
 container: {
     flex: 1,
     backgroundColor: '#6c4fbb',
-    paddingTop: Constants.statusBarHeight + 10,            
+    paddingTop: Constants.statusBarHeight + 10,          
   },
 
   header:{
     flexDirection: 'row',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',    
   },
 
   return: {
     flexDirection: 'row',
-    paddingHorizontal: 24,
+    paddingHorizontal: 40,
     marginTop: 30,
   },
 
   imageContainer: {
+    marginTop: 20,
     justifyContent: 'center',
     alignItems: 'center',    
   },

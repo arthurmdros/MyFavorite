@@ -3,6 +3,7 @@ import { Image, TouchableOpacity, View, Text } from 'react-native';
 import { Feather, AntDesign } from '@expo/vector-icons';
 import { useNavigation, useRoute } from '@react-navigation/native';
 
+import api from '../../services/api';
 import logoImg from '../../assets/logo_2X.png';
 import defaultImg from '../../assets/default.png';
 import styles from './styles';
@@ -12,6 +13,23 @@ export default function Detail(){
     const navigation = useNavigation();
     
     const favorite = route.params.favorite;
+    const userId = route.params.favorite.user_id;
+    
+
+    async function deleteFavorite(id){
+        try{
+            await api.delete(`favorites/${id}`, {
+                headers: {
+                    Authorization: userId,
+                }                                
+            });
+            alert('Deletado com sucesso');
+
+            navigateToMain();
+        }catch(err){
+            alert('Erro ao deletar favorito, tente novamente.');
+        }
+    }
 
     function navigateToEdit(){
         navigation.navigate('Update');
@@ -61,7 +79,7 @@ export default function Detail(){
                             <Text style={styles.buttonText}>Editar</Text>
                             <AntDesign style={styles.button} name='edit' size={20} color={'#FFF'}/>
                         </TouchableOpacity>
-                        <TouchableOpacity onPress={() => alert('Deletar.')}>
+                        <TouchableOpacity onPress={() => deleteFavorite(favorite.id)}>
                             <Text style={styles.buttonText}>Apagar</Text>
                             <Feather style={styles.button}  name='trash-2' size={20} color={'#FFF'}/>
                         </TouchableOpacity>          
@@ -75,7 +93,6 @@ export default function Detail(){
 /*
                     Método Apagar ------ ToDo
                     Criar implementação do criar favorito na Página Create ------- ToDo
-                    Criar implementação do atualizar favorito na Página Update -------- ToDO                      
-                    Icone para imagem ----- ImageShare
+                    Criar implementação do atualizar favorito na Página Update -------- ToDO                                         
   
 */

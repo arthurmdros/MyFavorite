@@ -62,37 +62,30 @@ export default function Detail(){
             <View style={styles.containerFavorite}>
                 <View style={styles.favorite}>
                 
-                <Text style={styles.favoriteProperty}>Título:</Text>
-                <Text style={styles.favoriteValue}>{favorite.title}</Text>
+                    <Text style={styles.favoriteProperty}>Título:</Text>                    
+                    <Text style={styles.favoriteValue}>{favorite.title}</Text> 
 
-                <Text style={styles.favoriteProperty}>Descrição:</Text>
-                <Text style={styles.favoriteValue}>{favorite.description}</Text>
-                
-                
-                <Text style={styles.favoriteProperty}>Link:</Text>
-                <TouchableOpacity onPress={() => navigateToWebView(favorite)}>
-                    <Text style={styles.favoriteValue}>{favorite.url}</Text>                
-                </TouchableOpacity>
-                
-                    <View style={styles.actions}>
-                        <TouchableOpacity style={styles.button} onPress={navigateToEdit}>
-                            <Text style={styles.buttonText}>Editar</Text>
-                            <AntDesign style={styles.button} name='edit' size={20} color={'#FFF'}/>
-                        </TouchableOpacity>
-                        <TouchableOpacity onPress={() => deleteFavorite(favorite.id)}>
-                            <Text style={styles.buttonText}>Apagar</Text>
-                            <Feather style={styles.button}  name='trash-2' size={20} color={'#FFF'}/>
-                        </TouchableOpacity>          
-                    </View>       
+                    <Text style={styles.favoriteProperty}>Descrição:</Text>                                        
+                    <Text style={styles.favoriteValue}>{favorite.description}</Text> 
+                    
+                    
+                    <Text style={styles.favoriteProperty}>Link:</Text>
+                    <TouchableOpacity onPress={() => navigateToWebView(favorite)}>
+                        <Text style={styles.favoriteValueLink}>{favorite.url}</Text>                
+                    </TouchableOpacity>
+                    
+                        <View style={styles.actions}>
+                            <TouchableOpacity style={styles.button} onPress={navigateToEdit}>
+                                <Text style={styles.buttonText}>Editar</Text>
+                                <AntDesign style={styles.button} name='edit' size={20} color={'#FFF'}/>
+                            </TouchableOpacity>
+                            <TouchableOpacity onPress={() => deleteFavorite(favorite.id)}>
+                                <Text style={styles.buttonText}>Apagar</Text>
+                                <Feather style={styles.button}  name='trash-2' size={20} color={'#FFF'}/>
+                            </TouchableOpacity>          
+                        </View>       
                 </View>       
             </View>
         </View>
     );
 }
-
-/*
-                    Método Apagar ------ ToDo
-                    Criar implementação do criar favorito na Página Create ------- ToDo
-                    Criar implementação do atualizar favorito na Página Update -------- ToDO                                         
-  
-*/

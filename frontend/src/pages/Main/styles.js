@@ -77,7 +77,7 @@ export default StyleSheet.create({
 
     favoriteProperty:{
       fontSize: 14,
-      color: '#FFF',
+      color: '#27ae60',
       fontWeight: 'bold',
     },
 
@@ -86,6 +86,7 @@ export default StyleSheet.create({
       fontSize: 15,
       marginBottom: 24,
       color: '#FFF',
+      fontWeight: 'bold',
     },
 
     detailsButton:{
@@ -95,7 +96,7 @@ export default StyleSheet.create({
     },
 
     detailsButtonText:{
-        color: '#FFF',
+        color: '#27ae60',
         fontSize: 15,
         fontWeight: 'bold',
     }

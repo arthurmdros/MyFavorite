@@ -90,7 +90,7 @@ export default function Main({navigation}) {
                             onPress={() => navigateToDetail(favorite)}
                         >
                             <Text style={styles.detailsButtonText}> Ver mais detalhes </Text>
-                            <Feather name='arrow-right' size={16} color={'#FFF'}/>
+                            <Feather name='arrow-right' size={16} color={'#27ae60'}/>
                         </TouchableOpacity>
                     </View>
                 )}                    

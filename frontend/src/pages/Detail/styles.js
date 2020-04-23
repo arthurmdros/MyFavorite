@@ -39,21 +39,30 @@ container: {
     padding: 24,
     borderRadius: 8,
     backgroundColor: '#41414d',
-    marginTop: 20,        
+    marginTop: 20,            
   },
 
   favoriteProperty:{
-    fontSize: 15,
-    color: '#FFF',
+    fontSize: 13,
+    color: '#27ae60',
     fontWeight: 'bold',
-    marginTop: 24,
+    marginTop: 10,        
   },
 
   favoriteValue: {    
-    fontSize: 15,
-    color: '#FFF',
+    fontSize: 14,
+    color: '#FFF',    
+    fontWeight: 'bold',
   },
   
+  favoriteValueLink: {
+    fontSize: 14,
+    color: '#FFF',
+    fontWeight: 'bold',
+    fontStyle: 'italic',
+    textDecorationLine: 'underline',    
+  },
+
   actions:{
     marginTop: 20,
     flexDirection: 'row',
@@ -68,6 +77,6 @@ container: {
   buttonText: {
     fontSize: 15,
     fontWeight: 'bold',
-    color: '#FFF',
+    color: '#27ae60',    
   },
 });

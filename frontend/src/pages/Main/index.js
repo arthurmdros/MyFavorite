@@ -7,18 +7,18 @@ import api from '../../services/api';
 import logoImg from '../../assets/logo_2X.png';
 import styles from './styles';
 
-export default function Main() {
+export default function Main({navigation}) {
     
     const [favorites, setFavorites] = useState([]);    
 
-    const navigation = useNavigation();
+    const nav = useNavigation();
     const route = useRoute();
     
 
     const userId = route.params.user.data.id;
     const userName = route.params.user.data.login;
     
-    useEffect(() => {
+    function loadFavorites(){
         api.get('profile', {
             headers: {
                 Authorization: userId,
@@ -26,19 +26,27 @@ export default function Main() {
         }).then(response => {            
             setFavorites(response.data);            
         })
-    }, [userId]);       
+    }
+
+    useEffect(() => {
+            const unsubscribe = navigation.addListener('focus', () => {
+                loadFavorites();
+            });
+        
+            return unsubscribe;
+    }, [navigation]);       
 
     function navigateToLogin(){
         alert('Saindo...');
-        navigation.navigate('Login');
+        nav.navigate('Login');
     }
 
     function navigateToCreate(){
-        navigation.navigate('Create');
+        nav.navigate('Create');
     }
 
     function navigateToDetail(favorite){
-        navigation.navigate('Detail', {favorite});
+        nav.navigate('Detail', {favorite});
     }
 
     return (

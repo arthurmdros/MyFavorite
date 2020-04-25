@@ -1,16 +1,25 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { Feather } from '@expo/vector-icons';
 import { TouchableOpacity, Image, View, Text} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { Form } from '@unform/mobile';
 
+import api from '../../services/api';
+import Input from '../component/Input';
 import logoImg from '../../assets/logo_2X.png';
 import styles from './styles';
 
 export default function Create(){
+
+    const formRef = useRef(null);
     const navigation = useNavigation();
 
     function navigateToMain(){
         navigation.navigate('Main');
+    }
+
+    async function handleSubmit(data) {
+        console.log(data);
     }
 
     return(
@@ -27,11 +36,21 @@ export default function Create(){
                 Insira as informações abaixo:
             </Text>
             
-
             <View style={styles.newFavorite}>
-                <Text style={styles.text}> Formulario </Text>
-            </View>
-            
+                <Form ref={formRef} onSubmit={handleSubmit}>
+                    <Text style={styles.text}>Título:</Text>
+                    <Input style={styles.titleText} name="title" type="title"/>
+                                    
+                    <Text style={styles.text}>Descrição:</Text>
+                    <Input style={styles.descText} name="description" type="description"/>
+
+                    <View style={styles.actions}>
+                        <TouchableOpacity>
+                            <Text style={styles.btnSave}>Salvar</Text>
+                        </TouchableOpacity>
+                    </View>
+                </Form>
+            </View>            
         </View>
     );
 }

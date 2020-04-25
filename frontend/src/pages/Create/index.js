@@ -43,10 +43,13 @@ export default function Create(){
                                     
                     <Text style={styles.text}>Descrição:</Text>
                     <Input style={styles.descText} name="description" type="description"/>
+                    
+                    <Text style={styles.text}>Link:</Text>
+                    <Input style={styles.descText} name="url" type="url"/>
 
                     <View style={styles.actions}>
-                        <TouchableOpacity>
-                            <Text style={styles.btnSave}>Salvar</Text>
+                        <TouchableOpacity style={styles.btnSave} onPress={() => formRef.current.submitForm()}>
+                            <Text style={styles.btnText}>Salvar</Text>
                         </TouchableOpacity>
                     </View>
                 </Form>

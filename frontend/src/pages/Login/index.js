@@ -26,7 +26,7 @@ export default function Login() {
         navigation.navigate('User');
     }
 
-    async function handleSubmit(data, { reset }){
+    async function handleSubmit(data, { reset }){        
         if(data.login === "" && data.senha === ""){
             alert('Informe os campos obrigatórios.');
         }else{            

@@ -41,8 +41,8 @@ export default function Main({navigation}) {
         nav.navigate('Login');
     }
 
-    function navigateToCreate(){
-        nav.navigate('Create');
+    function navigateToCreate(){        
+        nav.navigate('Create', userId);
     }
 
     function navigateToDetail(favorite){

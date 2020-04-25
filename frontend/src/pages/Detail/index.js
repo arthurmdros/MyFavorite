@@ -31,8 +31,8 @@ export default function Detail(){
         }
     }
 
-    function navigateToEdit(){
-        navigation.navigate('Update');
+    function navigateToEdit(favorite){        
+        navigation.navigate('Update', {favorite});
     }
 
     function navigateToMain(){
@@ -75,7 +75,7 @@ export default function Detail(){
                     </TouchableOpacity>
                     
                         <View style={styles.actions}>
-                            <TouchableOpacity style={styles.button} onPress={navigateToEdit}>
+                            <TouchableOpacity style={styles.button} onPress={() => navigateToEdit(favorite)}>
                                 <Text style={styles.buttonText}>Editar</Text>
                                 <AntDesign style={styles.button} name='edit' size={20} color={'#FFF'}/>
                             </TouchableOpacity>

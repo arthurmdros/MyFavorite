@@ -1,16 +1,24 @@
-import React from 'react';
+import React, { useRef }from 'react';
 import { Feather } from '@expo/vector-icons';
 import { TouchableOpacity, Image, View, Text} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { Form } from '@unform/mobile';
 
 import logoImg from '../../assets/logo_2X.png';
 import styles from './styles';
+import api from '../../services/api';
+import Input from '../component/Input';
 
 export default function Update(){
     const navigation = useNavigation();
+    const formRef = useRef(null);    
 
     function navigateToBack(){
         navigation.goBack();
+    }
+
+    function handleSubmit(data){
+        console.log(data);
     }
 
     return(
@@ -26,12 +34,25 @@ export default function Update(){
             <Text style={styles.description}>
                 Insira as informações abaixo:
             </Text>
-        
 
             <View style={styles.newFavorite}>
-                <Text style={styles.text}> Formulario </Text>
-            </View>
-            
+                <Form ref={formRef} onSubmit={handleSubmit}>
+                    <Text style={styles.text}>Novo título:</Text>
+                    <Input style={styles.titleText} name="title" type="title"/>
+                    
+                    <Text style={styles.text}>Nova descrição:</Text>
+                    <Input style={styles.descText} name="description" type="description"/>
+                    
+                    <Text style={styles.text}>Novo link:</Text>
+                    <Input style={styles.urlText} name="url" type="url"/>
+
+                    <View style={styles.actions}>
+                        <TouchableOpacity style={styles.btnSave} onPress={() => formRef.current.submitForm()}>
+                            <Text style={styles.btnText}>Salvar</Text>
+                        </TouchableOpacity>
+                    </View>
+                </Form>
+            </View>                
         </View>
     );
 }

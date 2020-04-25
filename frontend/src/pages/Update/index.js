@@ -38,13 +38,13 @@ export default function Update(){
             <View style={styles.newFavorite}>
                 <Form ref={formRef} onSubmit={handleSubmit}>
                     <Text style={styles.text}>Novo título:</Text>
-                    <Input style={styles.titleText} name="title" type="title"/>
+                    <Input style={styles.newText} name="title" type="title"/>
                     
                     <Text style={styles.text}>Nova descrição:</Text>
-                    <Input style={styles.descText} name="description" type="description"/>
+                    <Input style={styles.newText} name="description" type="description"/>
                     
                     <Text style={styles.text}>Novo link:</Text>
-                    <Input style={styles.urlText} name="url" type="url"/>
+                    <Input style={styles.newText} name="url" type="url"/>
 
                     <View style={styles.actions}>
                         <TouchableOpacity style={styles.btnSave} onPress={() => formRef.current.submitForm()}>

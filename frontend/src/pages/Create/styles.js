@@ -2,7 +2,7 @@ import { StyleSheet } from "react-native";
 import Constants from 'expo-constants';
 
 export default StyleSheet.create({
-container: {
+  container: {
     flex: 1,
     backgroundColor: '#6c4fbb',
     paddingTop: Constants.statusBarHeight + 10,          
@@ -28,16 +28,45 @@ container: {
     color: '#FFF'
   },
 
-  text:{
-    fontSize: 20,
+  text: {
+    fontSize: 16,
+    lineHeight: 24,
     color: '#FFF',
     fontWeight: 'bold',
+    marginTop: 10,
+  },
+
+  newText:{
+    fontSize: 16,
+    marginTop: 10,
+    borderBottomWidth: 1.5,
+    borderRadius: 8,    
   },
 
   newFavorite:{
     marginTop: 10,
-    flexDirection: 'column',
-    alignItems: 'center'
+    flexDirection: 'column',    
+  },
+  
+
+  actions: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 
+  btnSave:{
+    backgroundColor: '#FFF',
+    borderRadius: 8,
+    height: 40,
+    width: '38%',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+
+  btnText:{
+    color: '#000000',
+    fontSize: 15,
+    fontWeight: 'bold',
+  },
 });

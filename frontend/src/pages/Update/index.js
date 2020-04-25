@@ -1,7 +1,7 @@
 import React, { useRef }from 'react';
 import { Feather } from '@expo/vector-icons';
 import { TouchableOpacity, Image, View, Text} from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import { Form } from '@unform/mobile';
 
 import logoImg from '../../assets/logo_2X.png';
@@ -12,13 +12,30 @@ import Input from '../component/Input';
 export default function Update(){
     const navigation = useNavigation();
     const formRef = useRef(null);    
+    const route = useRoute();
+
+    const userId = route.params.favorite.user_id;
+    const id = route.params.favorite.id;
+    
 
     function navigateToBack(){
-        navigation.goBack();
+        navigation.navigate('Main');
     }
 
-    function handleSubmit(data){
-        console.log(data);
+    async function handleSubmit(data) {        
+        try{
+            await api.put(`favorites/${id}`, data, 
+                {headers: {
+                        Authorization:  userId,
+                    }
+                }     
+            );
+            alert('Alterado com sucesso!');
+            navigateToBack();
+
+        }catch(err){
+            alert('Erro ao atualizar, tente novamente.');
+        }
     }
 
     return(

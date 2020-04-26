@@ -74,4 +74,24 @@ container: {
     fontSize: 15,
     fontWeight: 'bold',
   },
+  
+  textImg: {
+    color: '#FFF',
+  },
+
+  btnImage: {   
+    marginTop: 20,
+    backgroundColor: '#41414d',
+    borderRadius: 8,
+    height: 40,
+    width: '50%',    
+    alignItems: 'center',
+  },
+
+  btnImgText:{            
+    textDecorationLine: 'underline',  
+    color: '#27ae60',
+    fontSize: 15,
+    fontWeight: 'bold',    
+  },
 });

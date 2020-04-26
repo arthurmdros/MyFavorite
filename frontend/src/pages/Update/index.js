@@ -3,6 +3,7 @@ import { Feather } from '@expo/vector-icons';
 import { TouchableOpacity, Image, View, Text} from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { Form } from '@unform/mobile';
+import * as ImagePicker from 'expo-image-picker';
 
 import logoImg from '../../assets/logo_2X.png';
 import styles from './styles';
@@ -22,7 +23,8 @@ export default function Update(){
         navigation.navigate('Main');
     }
 
-    async function handleSubmit(data) {        
+    async function handleSubmit(data,{reset}) {  
+        console.log(data);
         try{
             await api.put(`favorites/${id}`, data, 
                 {headers: {
@@ -34,8 +36,28 @@ export default function Update(){
             navigateToBack();
 
         }catch(err){
+            reset();
             alert('Erro ao atualizar, tente novamente.');
         }
+    }
+
+    let openImagePickerAsync = async (form) => {                
+        
+        let permissionResult = await ImagePicker.requestCameraRollPermissionsAsync();
+
+        if (permissionResult.granted === false){
+            alert("Permissão obrigatória");
+            return;
+        }
+
+        let pickerResult = await ImagePicker.launchImageLibraryAsync();
+
+        if (pickerResult.cancelled === true){
+            return;
+        }
+
+        form.current.setFieldValue("image", pickerResult.uri);        
+        return;
     }
 
     return(
@@ -62,6 +84,11 @@ export default function Update(){
                     
                     <Text style={styles.text}>Novo link:</Text>
                     <Input style={styles.newText} name="url" type="url"/>
+
+                    <TouchableOpacity onPress={() => openImagePickerAsync(formRef)} style={styles.btnImage}>
+                        <Text style={styles.btnImgText}>Selecionar Imagem</Text>
+                        <Input style={styles.textImg} name='image' type='image' editable={false} selectTextOnFocus={false} />
+                    </TouchableOpacity>
 
                     <View style={styles.actions}>
                         <TouchableOpacity style={styles.btnSave} onPress={() => formRef.current.submitForm()}>

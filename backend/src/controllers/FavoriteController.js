@@ -14,7 +14,8 @@ module.exports = {
             'favorites.*',            
             'favorites.title',
             'favorites.description',
-            'favorites.url'
+            'favorites.url',
+            'favorites.image'
         ]);
 
         res.header('Total-Count', count['count(*)']);
@@ -22,7 +23,7 @@ module.exports = {
     },
 
     async create (req,res){
-        const { title, description, url } = req.body;
+        const { title, description, url, image } = req.body;
         const user_id = req.headers.authorization;
        
 
@@ -30,6 +31,7 @@ module.exports = {
             title,
             description,
             url,
+            image,
             user_id,
         });
 
@@ -57,13 +59,14 @@ module.exports = {
     async update (req,res){
         const { id } = req.params;
 
-        const { title, description, url } = req.body;
+        const { title, description, url, image } = req.body;
 
         await connection('favorites').where('id', id)
         .update({
             title,
             description,
             url,
+            image,
         })
 
         return res.json({ id });

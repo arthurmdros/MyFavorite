@@ -3,6 +3,7 @@ import { Feather } from '@expo/vector-icons';
 import { TouchableOpacity, Image, View, Text} from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { Form } from '@unform/mobile';
+import * as ImagePicker from 'expo-image-picker';
 
 import api from '../../services/api';
 import Input from '../component/Input';
@@ -10,7 +11,7 @@ import logoImg from '../../assets/logo_2X.png';
 import styles from './styles';
 
 export default function Create(){
-
+    
     const route = useRoute();
     const formRef = useRef(null);
     const navigation = useNavigation();
@@ -21,7 +22,7 @@ export default function Create(){
         navigation.navigate('Main');
     }
 
-    async function handleSubmit(data) {        
+    async function handleSubmit(data, {reset}) {         
         try{
             await api.post('favorites', data, 
                 {headers: {
@@ -33,8 +34,28 @@ export default function Create(){
             navigateToMain();
 
         }catch(err){
+            reset();
             alert('Erro ao cadastrar, tente novamente.');
         }
+    }
+
+    let openImagePickerAsync = async (form) => {                
+        
+        let permissionResult = await ImagePicker.requestCameraRollPermissionsAsync();
+
+        if (permissionResult.granted === false){
+            alert("Permissão obrigatória");
+            return;
+        }
+
+        let pickerResult = await ImagePicker.launchImageLibraryAsync();
+
+        if (pickerResult.cancelled === true){
+            return;
+        }
+
+        form.current.setFieldValue("image", pickerResult.uri);        
+        return;
     }
 
     return(
@@ -61,6 +82,12 @@ export default function Create(){
                     
                     <Text style={styles.text}>Link:</Text>
                     <Input style={styles.newText} name="url" type="url"/>
+
+                    <TouchableOpacity onPress={() => openImagePickerAsync(formRef)} style={styles.btnImage}>
+                        <Text style={styles.btnImgText}>Selecionar Imagem</Text>
+                        <Input style={styles.textImg} name='image' type='image' editable={false} selectTextOnFocus={false} />
+                    </TouchableOpacity>
+                    
 
                     <View style={styles.actions}>
                         <TouchableOpacity style={styles.btnSave} onPress={() => formRef.current.submitForm()}>

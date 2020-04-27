@@ -24,7 +24,9 @@ export default function Update(){
     }
 
     async function handleSubmit(data,{reset}) {  
-        console.log(data);
+        if(data.image === ""){
+            data.image = "https://i.imgur.com/8u3skSq.png";
+        }                
         try{
             await api.put(`favorites/${id}`, data, 
                 {headers: {

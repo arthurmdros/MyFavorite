@@ -58,13 +58,13 @@ export default function User() {
                     <Text style={styles.text}>Confirmar senha: </Text>
                     <Input secureTextEntry={true} style={styles.senha} name="confirmar" type="confirmar" />
 
-                    <View style={styles.action}>
-                        <TouchableOpacity style={styles.button} onPress={() => formRef.current.submitForm()}>
-                            <Text style={styles.buttonText}>Salvar</Text>
-                        </TouchableOpacity>                                                     
-                        
+                    <View style={styles.action}>                        
                         <TouchableOpacity style={styles.button} onPress={navigateToLogin}>
                             <Text style={styles.buttonText}>Cancelar</Text>
+                        </TouchableOpacity> 
+
+                        <TouchableOpacity style={styles.button} onPress={() => formRef.current.submitForm()}>
+                            <Text style={styles.buttonText}>Salvar</Text>
                         </TouchableOpacity>                                                     
                     </View>
                 </Form>

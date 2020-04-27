@@ -22,7 +22,10 @@ export default function Create(){
         navigation.navigate('Main');
     }
 
-    async function handleSubmit(data, {reset}) {         
+    async function handleSubmit(data, {reset}) {            
+        if(data.image === ""){
+            data.image = "https://i.imgur.com/8u3skSq.png";
+        }        
         try{
             await api.post('favorites', data, 
                 {headers: {

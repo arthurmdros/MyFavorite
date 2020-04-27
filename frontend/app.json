@@ -4,8 +4,7 @@
     "slug": "MyFavorite",
     "platforms": [
       "ios",
-      "android",
-      "web"
+      "android"      
     ],
     "version": "1.0.0",
     "orientation": "portrait",
@@ -22,7 +21,13 @@
       "**/*"
     ],
     "ios": {
+      "bundleIdentifier": "com.dev.MyFavorite",
+      "buildNumber": "1.0.0",
       "supportsTablet": true
+    },
+    "android": {
+      "package": "com.dev.MyFavorite",
+      "versionCode": 1
     }
   }
 }

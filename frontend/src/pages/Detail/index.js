@@ -5,12 +5,11 @@ import { useNavigation, useRoute } from '@react-navigation/native';
 
 import api from '../../services/api';
 import logoImg from '../../assets/logo_2X.png';
-import defaultImg from '../../assets/default.png';
 import styles from './styles';
 
 export default function Detail(){
     const route = useRoute();
-    const navigation = useNavigation();
+    const nav = useNavigation();
     
     const favorite = route.params.favorite;
     const userId = route.params.favorite.user_id;
@@ -30,17 +29,18 @@ export default function Detail(){
             alert('Erro ao deletar favorito, tente novamente.');
         }
     }
+    
 
     function navigateToEdit(favorite){        
-        navigation.navigate('Update', {favorite});
+        nav.navigate('Update', {favorite});
     }
 
     function navigateToMain(){
-        navigation.navigate('Main');
+        nav.navigate('Main');
     }
 
     function navigateToWebView(favorite){
-        navigation.navigate('WebPage', {favorite});
+        nav.navigate('WebPage', {favorite});
     }
 
     return(
@@ -54,8 +54,9 @@ export default function Detail(){
             </View>
 
             <View style={styles.imageContainer}>
-                <TouchableOpacity onPress={() => alert('Logo')}>
-                    <Image source={defaultImg} style={styles.image}/>
+                <TouchableOpacity onPress={() => alert(favorite.title)}>
+                    <Image source={{uri: favorite.image}} 
+                    style={styles.image}/>
                 </TouchableOpacity>
             </View>
             
